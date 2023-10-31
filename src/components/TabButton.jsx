@@ -1,16 +1,15 @@
-export const btns = ["Components", "JSX", "Props", "State"];
+export default function TabButton({ tabContent, setTabContent, btns }) {
+  function tabClick(event) {
+    setTabContent(event);
+    console.log(tabContent);
+  }
 
-function tabClick(btnName) {
-  console.log(`Nayska ${btnName}`);
-}
-
-export default function TabButton() {
   return (
     <>
       {btns.map((btn, index) => {
         return (
           <li key={index}>
-            <button onClick={(e) => tabClick(e)}>{btn}</button>
+            <button onClick={() => tabClick(btn)}>{btn}</button>
           </li>
         );
       })}

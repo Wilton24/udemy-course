@@ -1,9 +1,13 @@
-import CoreConcepts from "./components/CoreConcepts";
+import { useState } from "react";
 import Header from "./components/Header/Header";
+import CoreConcepts from "./components/CoreConcepts";
 import TabButton from "./components/TabButton";
-import { CORE_CONCEPTS } from "./data.js";
+import { CORE_CONCEPTS, EXAMPLES } from "./data-with-examples";
+import TabContent from "./components/TabContent";
 
 export default function App() {
+  const [tabContent, setTabContent] = useState("components");
+  const btns = ["components", "jsx", "props", "state"];
   return (
     <div>
       <Header />
@@ -26,9 +30,17 @@ export default function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton />
+            <TabButton
+              tabContent={tabContent}
+              setTabContent={setTabContent}
+              btns={btns}
+            />
           </menu>
-          Dynamic Content
+          <TabContent
+            EXAMPLES={EXAMPLES}
+            tabContent={tabContent}
+            setTabContent={setTabContent}
+          />
         </section>
         <h2>Time to get started!</h2>
       </main>
