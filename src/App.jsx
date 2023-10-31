@@ -1,35 +1,37 @@
-function App() {
-  const threeLittleBirds = [
-    "Fundamental",
-    "Core",
-    "Main",
-    "All",
-    "General",
-    "The best",
-  ];
+import CoreConcepts from "./components/CoreConcepts";
+import Header from "./components/Header/Header";
+import TabButton from "./components/TabButton";
+import { CORE_CONCEPTS } from "./data.js";
 
-  function generateRandomNumber() {
-    const randomNum = Math.floor(Math.random() * threeLittleBirds.length);
-    return randomNum;
-  }
-
-  const firstWord = threeLittleBirds[generateRandomNumber()];
-
+export default function App() {
   return (
     <div>
-      <header>
-        <img src="src/assets/react-core-concepts.png" alt="Stylized atom" />
-        <h1>React Essentials</h1>
-        <p>
-          {firstWord} React concepts you will need for almost any app you are
-          going to build!
-        </p>
-      </header>
+      <Header />
       <main>
+        <section id="core-concepts">
+          <h2>Core Concepts</h2>
+          <ul>
+            {CORE_CONCEPTS.map((value, index) => {
+              return (
+                <CoreConcepts
+                  image={value.image}
+                  title={value.title}
+                  description={value.description}
+                  key={index}
+                />
+              );
+            })}
+          </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton />
+          </menu>
+          Dynamic Content
+        </section>
         <h2>Time to get started!</h2>
       </main>
     </div>
   );
 }
-
-export default App;
